@@ -1,0 +1,11 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.associations": {
+        "__tree": "cpp",
+        "map": "cpp",
+        "vector": "cpp",
+        "iostream": "cpp",
+        "string": "cpp"
+    },
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Google,IndentWidth: 4,ColumnLimit: 0}"
+}

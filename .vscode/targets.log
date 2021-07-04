@@ -1,0 +1,434 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Thu Dec 31 21:13:43 2020
+ 
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 5)
+SRC = $(wildcard src/*.cpp)
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/canoigomes/Documents/Projects/manifesto
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 3)
+CFLAGS = -Wall -std=c++17
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_NODE_CACHED_DATA_DIR = /Users/canoigomes/Library/Application Support/Code/CachedData/507ce72a4466fbb27b715c3722558bb15afa9f48
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/hv/44strbts279bl27vxnpxmb140000gp/T/vscode-ipc-fedc301c-3c92-47ff-9bb3-5793c7991a27.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Users/canoigomes/Sources/emsdk:/Users/canoigomes/Sources/emsdk/upstream/emscripten:/Users/canoigomes/Sources/emsdk/node/14.15.5_64bit/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/canoigomes/Sources/emsdk/upstream/emscripten/tools/:/usr/local/Cellar/llvm/12.0.0_1/bin/
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+EMSDK_NODE = /Users/canoigomes/Sources/emsdk/node/14.15.5_64bit/bin/node
+# environment
+LaunchInstanceID = C6741861-2B85-4DD4-B0D0-6C35DC916F54
+# makefile (from `Makefile', line 2)
+AR = ar
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.XLKNUKRXJF/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# makefile (from `Makefile', line 9)
+OBJS = $(SRC:%.cpp=%.o)
+# environment
+PWD = /Users/canoigomes/Documents/Projects/manifesto
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+EMSDK_PYTHON = /Users/canoigomes/Sources/emsdk/python/3.9.2-1_64bit/bin/python3
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /Users/canoigomes
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+LOGNAME = canoigomes
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ZSH = /Users/canoigomes/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 1)
+CC = g++
+# default
+ 
+MAKE_VERSION := 3.81
+# environment
+USER = canoigomes
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 6)
+INCLUDE = -Iinclude
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 7)
+LFLAGS = -L. -ltea -lgame -lSDL2 -lm -lpthread
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/hv/44strbts279bl27vxnpxmb140000gp/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/canoigomes/Library/Application Support/Code/1.57.1-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.507742.507774
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F6:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# environment
+EM_CONFIG = /Users/canoigomes/Sources/emsdk/.emscripten
+# automatic
+<F = $(notdir $<)
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 4)
+OUT = game
+# environment
+SECURITYSESSIONID = 186a6
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+EMSDK = /Users/canoigomes/Sources/emsdk
+# environment
+VSCODE_PID = 354
+# variable set hash-table stats:
+ 
+# Load=80/1024=8%, Rehash=0, Collisions=7/114=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777225, inode 3518669): 11 files, no impossibilities.
+# src (device 16777225, inode 4384489): 15 files, no impossibilities.
+
+# 26 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+%.o: %.cpp
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+src/board.o: src/board.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/board'
+#  Last modified 2021-07-04 17:35:32
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+all: libgame.a
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := libgame.a
+# automatic
+# | := 
+# automatic
+# < := libgame.a
+# automatic
+# ^ := libgame.a
+# automatic
+# ? := libgame.a
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  commands to execute (from `Makefile', line 15):
+	$(CC) main.cpp -o $(OUT) $(INCLUDE) $(CFLAGS) $(LFLAGS)
+	
+
+.PHONY: all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/gamescene.o: src/gamescene.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/gamescene'
+#  Last modified 2021-07-04 18:01:02
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+# Not a target:
+src/menuscene.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-04 01:52:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-04 17:39:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/texturemanager.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-03 18:30:20
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/scenemanager.o: src/scenemanager.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/scenemanager'
+#  Last modified 2021-07-04 17:35:48
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+libgame.a: src/board.o src/game.o src/gamescene.o src/menuscene.o src/scenemanager.o src/texturemanager.o
+#  Implicit rule search has not been done.
+#  Last modified 2021-07-04 18:01:02
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+ 
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 18):
+	$(AR) rcs $@ $(OBJS)
+	
+
+# Not a target:
+src/game.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-04 17:46:35
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/board.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-04 12:39:46
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/menuscene.o: src/menuscene.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/menuscene'
+#  Last modified 2021-07-04 17:35:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 24):
+	rm -f $(OBJS)
+	rm -f libgame.a
+	rm -f $(OUT)
+	
+
+# Not a target:
+game:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/gamescene.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2020-12-31 21:08:07
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/texturemanager.o: src/texturemanager.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/texturemanager'
+#  Last modified 2021-07-04 17:35:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+.SECOND: game
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/game.o: src/game.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/game'
+#  Last modified 2021-07-04 17:47:59
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 21):
+	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+# Not a target:
+src/scenemanager.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-04 17:02:17
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# files hash-table stats:
+# Load=21/1024=2%, Rehash=0, Collisions=1/62=2%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+ 
+
+# Finished Make data base on Thu Dec 31 21:13:43 2020
+
+ 
