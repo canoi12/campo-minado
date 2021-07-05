@@ -11,6 +11,7 @@ GameScene::GameScene() : _board(10, 10) {
     this->_panelHeight = 48;
     this->_mouseX = 0;
     this->_mouseY = 0;
+    this->_state = GAME_STATE;
 
     this->_count = this->_board.width()*this->_board.height();
     this->_rects[0] = TextureManager::Instance()->Rect("card");
@@ -21,49 +22,8 @@ GameScene::GameScene() : _board(10, 10) {
 }
 
 void GameScene::update(float dt) {
-    te_point_t size;
-    tea_window_size(&size, 0, 0);
-    int w, h;
-    w = this->_board.width() * 16;
-    h = this->_board.height() * 16;
-
-    this->_x = (size.x / 2.f) - ((w * this->_scale) / 2.f);
-    this->_y = this->_panelHeight + ((size.y-this->_panelHeight) / 2.f) - ((h * this->_scale) / 2.f);
-
     if (tea_key_pressed(TEA_KEY_R)) this->restart();
-
-    if (tea_key_pressed(TEA_KEY_A)) this->resize(this->_board.width()-1, this->_board.height());
-    else if (tea_key_pressed(TEA_KEY_D)) this->resize(this->_board.width()+1, this->_board.height());
-
-    if (tea_key_pressed(TEA_KEY_S)) this->resize(this->_board.width(), this->_board.height()-1);
-    else if (tea_key_pressed(TEA_KEY_W)) this->resize(this->_board.width(), this->_board.height()+1);
-
-    if (tea_key_pressed(TEA_KEY_X)) {
-        this->_board.setBombs(this->_board.bombs()-1);
-        this->restart();
-    } else if (tea_key_pressed(TEA_KEY_C)) {
-        this->_board.setBombs(this->_board.bombs()+1);
-        this->restart();
-    }
-
-
-    int mx, my;
-    tea_mouse_pos(&mx, &my);
-    int cx, cy;
-    cx = floor((mx-this->_x) / (16*this->_scale));
-    cy = floor((my-this->_y) / (16*this->_scale));
-    this->_mouseX = cx;
-    this->_mouseY = cy;
-    if (this->_board.cell(cx, cy) >= 0 && this->_mask[cy][cx] != 0) {
-        if (tea_mouse_pressed(TEA_MOUSE_LEFT)) {
-            if (this->_mask[cy][cx] == 1) this->showCell(cx, cy);
-            if (this->_board.cell(cx, cy) == '*') cout << "You lose!" << endl;
-            if (this->_count == this->_board.bombs()) this->restart();
-        } else if (tea_mouse_pressed(TEA_MOUSE_RIGHT)) {
-            if (this->_mask[cy][cx] == 1) this->_mask[cy][cx] = 2;
-            else if (this->_mask[cy][cx] == 2) this->_mask[cy][cx] = 1;
-        }
-    }
+    if (this->_state == GAME_STATE) this->gameplay(dt);
 }
 
 void GameScene::draw() {
@@ -72,6 +32,8 @@ void GameScene::draw() {
     tea_set_target(this->_screen);
     tea_clear(0);
     this->_board.draw();
+
+    if (this->_state != GAME_STATE) this->updatePosition();
 
     vector<vector<char> >::iterator row;
     tea_color(TEA_WHITE);
@@ -112,11 +74,11 @@ void GameScene::draw() {
     tea_line(0, 24, size.x, 24);
 
     string info;
-    info += to_string(this->_board.bombs()) + " minas";
+    info += to_string(this->_board.bombs().size()) + " minas";
     info += "     ";
     info += "Campo: " + to_string(this->_board.width()) + "x" + to_string(this->_board.height());
     info += "     ";
-    info += "Restam: " + to_string(this->_count - this->_board.bombs());
+    info += "Restam: " + to_string(this->_count - this->_board.bombs().size());
     tea_print(info.c_str(), 8, 8);
 
     string controls;
@@ -129,9 +91,13 @@ void GameScene::draw() {
     controls += "R: reiniciar";
 
     tea_print(controls.c_str(), 8, 32);
+
+    if (this->_state == WIN_STATE) this->win(tea_delta());
+    else if (this->_state == GAMEOVER_STATE) this->gameover(tea_delta());
 }
 
 void GameScene::restart() {
+    this->_state = GAME_STATE;
     this->_count = this->_board.width()*this->_board.height();
     vector<vector<char> >::iterator it;
     for (it = this->_mask.begin(); it != this->_mask.end(); it++) {
@@ -147,8 +113,7 @@ void GameScene::updatePosition() {
     w = this->_board.width() * 16;
     h = this->_board.height() * 16;
     this->_x = (size.x / 2) - ((w*this->_scale)/2);
-    this->_y = (size.y / 2) - ((h*this->_scale)/2);
-
+    this->_y = this->_panelHeight + ((size.y-this->_panelHeight) / 2) - ((h*this->_scale)/2);
 }
 
 void GameScene::showCell(int x, int y) {
@@ -180,6 +145,84 @@ void GameScene::resize(int width, int height) {
         it->resize(width);
     }
     this->restart();
+}
+
+void GameScene::showBombs() {
+    vector<Pos>::iterator bomb;
+    for (bomb = this->_board.bombs().begin(); bomb != this->_board.bombs().end(); bomb++) {
+        this->_mask[bomb->y][bomb->x] = 0;
+    }
+}
+
+void GameScene::gameplay(float dt) {
+    te_point_t size;
+    tea_window_size(&size, 0, 0);
+    int w, h;
+    w = this->_board.width() * 16;
+    h = this->_board.height() * 16;
+
+    // this->_x = (size.x / 2.f) - ((w * this->_scale) / 2.f);
+    // this->_y = this->_panelHeight + ((size.y-this->_panelHeight) / 2.f) - ((h * this->_scale) / 2.f);
+    this->updatePosition();
+
+    if (tea_key_pressed(TEA_KEY_A)) this->resize(this->_board.width()-1, this->_board.height());
+    else if (tea_key_pressed(TEA_KEY_D)) this->resize(this->_board.width()+1, this->_board.height());
+
+    if (tea_key_pressed(TEA_KEY_S)) this->resize(this->_board.width(), this->_board.height()-1);
+    else if (tea_key_pressed(TEA_KEY_W)) this->resize(this->_board.width(), this->_board.height()+1);
+
+    if (tea_key_pressed(TEA_KEY_X)) {
+        this->_board.setBombs(this->_board.bombs().size()-1);
+        this->restart();
+    } else if (tea_key_pressed(TEA_KEY_C)) {
+        this->_board.setBombs(this->_board.bombs().size()+1);
+        this->restart();
+    }
+
+    int mx, my;
+    tea_mouse_pos(&mx, &my);
+    int cx, cy;
+    cx = floor((mx-this->_x) / (16*this->_scale));
+    cy = floor((my-this->_y) / (16*this->_scale));
+    this->_mouseX = cx;
+    this->_mouseY = cy;
+    if (this->_board.cell(cx, cy) >= 0 && this->_mask[cy][cx] != 0) {
+        if (tea_mouse_pressed(TEA_MOUSE_LEFT)) {
+            if (this->_mask[cy][cx] == 1) this->showCell(cx, cy);
+            if (this->_board.cell(cx, cy) == '*') {
+                this->showBombs();
+                this->_state = GAMEOVER_STATE;
+            }
+            if (this->_count == this->_board.bombs().size()) this->_state = WIN_STATE;
+        } else if (tea_mouse_pressed(TEA_MOUSE_RIGHT)) {
+            if (this->_mask[cy][cx] == 1) this->_mask[cy][cx] = 2;
+            else if (this->_mask[cy][cx] == 2) this->_mask[cy][cx] = 1;
+        }
+    }
+}
+
+void GameScene::win(float dt) {
+    te_point_t size;
+    tea_window_size(&size, 0, 0);
+    int cx = size.x / 2 - 64;
+    int cy = size.y / 2 - 4;
+    tea_color(TEA_BLACK);
+    tea_mode(1);
+    tea_rect(0, size.y/2 - 32, size.x, 64);
+    tea_color(TEA_WHITE);
+    tea_print("PARABÉNS BOE!", cx, cy);
+}
+
+void GameScene::gameover(float dt) {
+    te_point_t size;
+    tea_window_size(&size, 0, 0);
+    int cx = size.x / 2 - 64;
+    int cy = size.y / 2 - 4;
+    tea_color(TEA_BLACK);
+    tea_mode(1);
+    tea_rect(0, size.y/2 - 32, size.x, 64);
+    tea_color(TEA_WHITE);
+    tea_print("PERDEU GALADO!", cx, cy);
 }
 
 GameScene::~GameScene() {

@@ -31,6 +31,12 @@ class MenuScreen : public Scene {
     vector<string> _options;
 };
 
+enum {
+    GAME_STATE = 0,
+    WIN_STATE,
+    GAMEOVER_STATE
+};
+
 class GameScene : public Scene {
     public:
     GameScene();
@@ -47,6 +53,7 @@ class GameScene : public Scene {
     int _panelHeight;
     float _scale;
     int _count;
+    int _state;
     Board _board;
     vector<vector<char> > _mask;
     te_rect_t _rects[2]; // coordenadas das texturas de 'bloco virado' e 'bandeira'
@@ -56,8 +63,11 @@ class GameScene : public Scene {
     void showCell(int x, int y);
     void resize(int width, int height);
 
-    void gameplay();
-    void pause();
+    void showBombs();
+
+    void gameplay(float dt);
+    void win(float dt);
+    void gameover(float dt);
 };
 
 class GameOverScene : public Scene {

@@ -9,6 +9,18 @@
 
 Board::Board(int w, int h, int bombs) {
     this->_grid = std::vector<std::vector<char> >();
+    this->_rects = map<char, te_rect_t>();
+    this->_bombs = vector<Pos>();
+    this->_rects[1] = TextureManager::Instance()->Rect("one");
+    this->_rects[2] = TextureManager::Instance()->Rect("two");
+    this->_rects[3] = TextureManager::Instance()->Rect("three");
+    this->_rects[4] = TextureManager::Instance()->Rect("four");
+    this->_rects[5] = TextureManager::Instance()->Rect("five");
+    this->_rects[6] = TextureManager::Instance()->Rect("six");
+    this->_rects[7] = TextureManager::Instance()->Rect("seven");
+    this->_rects[8] = TextureManager::Instance()->Rect("eight");
+    this->_rects[9] = TextureManager::Instance()->Rect("nine");
+    this->_rects['*'] = TextureManager::Instance()->Rect("bomb");
     
     this->setBombs(bombs);
     this->resize(w, h);
@@ -16,9 +28,8 @@ Board::Board(int w, int h, int bombs) {
 }
 
 Board::Board(BoardConfig &config) {
-    this->_width = config.w;
-    this->_height = config.h;
-    this->_bombs = config.bombs;
+    this->resize(config.w, config.h);
+    this->setBombs(config.bombs);
 }
 
 void Board::generate() {
@@ -28,7 +39,9 @@ void Board::generate() {
     for (it = this->_grid.begin(); it != this->_grid.end(); it++) {
         std::fill(it->begin(), it->end(), 0);
     }
-    for (int i = 0; i < this->_bombs; i++) {
+
+    vector<Pos>::iterator bomb;
+    for (bomb = this->_bombs.begin(); bomb != this->_bombs.end(); bomb++) {
         int xx = rand() % this->_width;
         int yy = rand() % this->_height;
         // garante que todas as bombas estejam em posições diferentes
@@ -37,6 +50,8 @@ void Board::generate() {
             yy = rand() % this->_height;
         }
         this->_grid[yy][xx] = '*';
+        bomb->x = xx;
+        bomb->y = yy;
 
         this->addValue(xx - 1, yy - 1);
         this->addValue(xx, yy - 1);
@@ -60,10 +75,10 @@ char Board::cell(int x, int y) {
 }
 
 void Board::setBombs(int bombs) {
-    this->_bombs = bombs;
+    this->_bombs.resize(bombs);
 }
 
-int Board::bombs() {
+vector<Pos>& Board::bombs() {
     return this->_bombs;
 }
 
@@ -101,20 +116,24 @@ void Board::draw() {
             tea_print(str, dx + 4, dy + 4);
 			te_rect_t dest = TEA_RECT(dx, dy, 16, 16);
 			te_rect_t rect;
-			switch (this->_grid[yy][xx]) {
-				case '1': rect = TextureManager::Instance()->Rect("one"); break;
-				case '2': rect = TextureManager::Instance()->Rect("two"); break;
-				case '3': rect = TextureManager::Instance()->Rect("three"); break;
-				case '4': rect = TextureManager::Instance()->Rect("four"); break;
-				case '5': rect = TextureManager::Instance()->Rect("five"); break;
-				case '6': rect = TextureManager::Instance()->Rect("six"); break;
-				case '7': rect = TextureManager::Instance()->Rect("seven"); break;
-				case '8': rect = TextureManager::Instance()->Rect("eight"); break;
-				case '9': rect = TextureManager::Instance()->Rect("nine"); break;
-				case '*': rect = TextureManager::Instance()->Rect("bomb"); break;
-				default:
-					rect = TextureManager::Instance()->Rect("empty");
-			}
+            char cell = this->_grid[yy][xx];
+            if (this->_rects.find(cell) != this->_rects.end()) rect = this->_rects[cell];
+            else rect = TextureManager::Instance()->Rect("empty");
+
+			// switch (this->_grid[yy][xx]) {
+			// 	case '1': rect = TextureManager::Instance()->Rect("one"); break;
+			// 	case '2': rect = TextureManager::Instance()->Rect("two"); break;
+			// 	case '3': rect = TextureManager::Instance()->Rect("three"); break;
+			// 	case '4': rect = TextureManager::Instance()->Rect("four"); break;
+			// 	case '5': rect = TextureManager::Instance()->Rect("five"); break;
+			// 	case '6': rect = TextureManager::Instance()->Rect("six"); break;
+			// 	case '7': rect = TextureManager::Instance()->Rect("seven"); break;
+			// 	case '8': rect = TextureManager::Instance()->Rect("eight"); break;
+			// 	case '9': rect = TextureManager::Instance()->Rect("nine"); break;
+			// 	case '*': rect = TextureManager::Instance()->Rect("bomb"); break;
+			// 	default:
+			// 		rect = TextureManager::Instance()->Rect("empty");
+			// }
 			te_texture_t *tex = TextureManager::Instance()->Texture();
 			tea_texture_draw(tex, &dest, &rect);
 
@@ -190,7 +209,7 @@ void Board::addValue(int x, int y) {
     if (x >= 0 && x < this->_width &&
         y >= 0 && y < this->_height &&
         this->_grid[y][x] != '*') {
-        if (this->_grid[y][x] == 0) this->_grid[y][x] = '0';
+        // if (this->_grid[y][x] == 0) this->_grid[y][x] = '0';
         this->_grid[y][x] += 1;
     }
 }
