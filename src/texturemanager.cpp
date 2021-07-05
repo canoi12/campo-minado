@@ -5,7 +5,7 @@
 TextureManager *TextureManager::_instance = NULL;
 
 TextureManager::TextureManager() {
-    this->_tex = tea_texture_load("assets/textures.png", TEA_TEXTURE_STATIC);
+    this->_tex = tea_texture_load("textures.png", TEA_TEXTURE_STATIC);
     this->_rects = map<string, te_rect_t>();
     this->_rects["one"] = TEA_RECT(0, 0, 16, 16);
     this->_rects["two"] = TEA_RECT(16, 0, 16, 16);
