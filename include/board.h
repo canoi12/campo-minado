@@ -1,10 +1,18 @@
 #pragma once
 
 #include <vector>
+#include <map>
+#include "tea.h"
+
+using namespace std;
 
 struct BoardConfig {
     int w, h;
     int bombs;
+};
+
+struct Pos {
+    int x, y;
 };
 
 class Board {
@@ -18,7 +26,7 @@ class Board {
     char cell(int x, int y);
 
     void setBombs(int bombs = 8);
-    int bombs();
+    vector<Pos>& bombs();
 
     void setWidth(int width);
     int width();
@@ -30,12 +38,13 @@ class Board {
     void print();
     void draw();
 
-    std::vector<char> operator[](int y);
+    vector<char> operator[](int y);
 
     private:
     int _width, _height;
-    int _bombs;
-    std::vector<std::vector<char> > _grid;
+    vector<Pos> _bombs;
+    vector<vector<char> > _grid;
+    map<char, te_rect_t> _rects;
 
     void addValue(int x, int y);
 };

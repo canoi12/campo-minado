@@ -3,3 +3,5 @@ game
 *.o
 src/*.o
 .vscode
+*.exe
+*.zip
