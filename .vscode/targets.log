@@ -8,8 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Dec 31 21:13:43 2020
- 
+# Make data base, printed on Sun Jul  4 20:21:56 2021
 
 # Variables
 
@@ -17,7 +16,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 5)
+# makefile (from `Makefile', line 6)
 SRC = $(wildcard src/*.cpp)
 # environment
 VSCODE_LOG_NATIVE = false
@@ -35,7 +34,7 @@ SHELL = /bin/sh
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `Makefile', line 3)
+# makefile (from `Makefile', line 4)
 CFLAGS = -Wall -std=c++17
 # makefile (from `Makefile', line 1)
 MAKEFILE_LIST :=  Makefile
@@ -47,6 +46,8 @@ VSCODE_VERBOSE_LOGGING = true
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/hv/44strbts279bl27vxnpxmb140000gp/T/vscode-ipc-fedc301c-3c92-47ff-9bb3-5793c7991a27.sock
+# makefile (from `Makefile', line 2)
+CPP = g++
 # environment
 VSCODE_CWD = /
 # environment
@@ -57,7 +58,7 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 EMSDK_NODE = /Users/canoigomes/Sources/emsdk/node/14.15.5_64bit/bin/node
 # environment
 LaunchInstanceID = C6741861-2B85-4DD4-B0D0-6C35DC916F54
-# makefile (from `Makefile', line 2)
+# makefile (from `Makefile', line 3)
 AR = ar
 # environment
 VSCODE_LOG_STACK = false
@@ -71,7 +72,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.XLKNUKRXJF/Listeners
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
-# makefile (from `Makefile', line 9)
+# makefile (from `Makefile', line 10)
 OBJS = $(SRC:%.cpp=%.o)
 # environment
 PWD = /Users/canoigomes/Documents/Projects/manifesto
@@ -104,21 +105,20 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 1
 # makefile (from `Makefile', line 1)
-CC = g++
+CC = gcc
 # default
- 
 MAKE_VERSION := 3.81
 # environment
 USER = canoigomes
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 6)
-INCLUDE = -Iinclude
+# makefile (from `Makefile', line 7)
+INCLUDE = -Iinclude -Iexternal/tea -Iexternal/tea/external
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `Makefile', line 7)
+# makefile (from `Makefile', line 8)
 LFLAGS = -L. -ltea -lgame -lSDL2 -lm -lpthread
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
@@ -156,7 +156,7 @@ EM_CONFIG = /Users/canoigomes/Sources/emsdk/.emscripten
 PAGER = less
 # environment
 LC_ALL = C
-# makefile (from `Makefile', line 4)
+# makefile (from `Makefile', line 5)
 OUT = game
 # environment
 SECURITYSESSIONID = 186a6
@@ -175,8 +175,7 @@ EMSDK = /Users/canoigomes/Sources/emsdk
 # environment
 VSCODE_PID = 354
 # variable set hash-table stats:
- 
-# Load=80/1024=8%, Rehash=0, Collisions=7/114=6%
+# Load=81/1024=8%, Rehash=0, Collisions=7/113=6%
 
 # Pattern-specific Variable Values
 
@@ -184,16 +183,16 @@ VSCODE_PID = 354
 
 # Directories
 
-# . (device 16777225, inode 3518669): 11 files, no impossibilities.
+# . (device 16777225, inode 3518669): 13 files, no impossibilities.
 # src (device 16777225, inode 4384489): 15 files, no impossibilities.
 
-# 26 files, no impossibilities in 2 directories.
+# 28 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.cpp
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -203,43 +202,26 @@ VSCODE_PID = 354
 src/board.o: src/board.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/board'
-#  Last modified 2021-07-04 17:35:32
+#  Last modified 2021-07-04 20:21:02
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
-all: libgame.a
+all: libgame.a libtea.a
 #  Phony target (prerequisite of .PHONY).
 #  Command-line target.
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: `'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := all
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := libgame.a
-# automatic
-# | := 
-# automatic
-# < := libgame.a
-# automatic
-# ^ := libgame.a
-# automatic
-# ? := libgame.a
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
-#  commands to execute (from `Makefile', line 15):
-	$(CC) main.cpp -o $(OUT) $(INCLUDE) $(CFLAGS) $(LFLAGS)
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  commands to execute (from `Makefile', line 16):
+	$(CPP) main.cpp -o $(OUT) $(INCLUDE) $(CFLAGS) $(LFLAGS)
 	
 
 .PHONY: all
@@ -250,13 +232,13 @@ all: libgame.a
 src/gamescene.o: src/gamescene.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/gamescene'
-#  Last modified 2021-07-04 18:01:02
+#  Last modified 2021-07-04 20:21:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
 # Not a target:
@@ -277,7 +259,7 @@ src/menuscene.cpp:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-04 17:39:50
+#  Last modified 2021-07-04 20:21:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -295,30 +277,30 @@ src/texturemanager.cpp:
 src/scenemanager.o: src/scenemanager.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/scenemanager'
-#  Last modified 2021-07-04 17:35:48
+#  Last modified 2021-07-04 20:21:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
 libgame.a: src/board.o src/game.o src/gamescene.o src/menuscene.o src/scenemanager.o src/texturemanager.o
 #  Implicit rule search has not been done.
-#  Last modified 2021-07-04 18:01:02
+#  Last modified 2021-07-04 20:21:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 18):
+#  commands to execute (from `Makefile', line 19):
 	$(AR) rcs $@ $(OBJS)
 	
 
 # Not a target:
 src/game.cpp:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2021-07-04 17:46:35
 #  File has been updated.
 #  Successfully updated.
@@ -328,7 +310,7 @@ src/game.cpp:
 # Not a target:
 src/board.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-04 12:39:46
+#  Last modified 2021-07-04 18:52:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -343,22 +325,23 @@ src/board.cpp:
 src/menuscene.o: src/menuscene.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/menuscene'
-#  Last modified 2021-07-04 17:35:43
+#  Last modified 2021-07-04 20:21:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 24):
+#  commands to execute (from `Makefile', line 29):
 	rm -f $(OBJS)
 	rm -f libgame.a
+	rm -f tea.o libtea.a
 	rm -f $(OUT)
 	
 
@@ -371,7 +354,7 @@ game:
 # Not a target:
 src/gamescene.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2020-12-31 21:08:07
+#  Last modified 2021-07-04 19:48:45
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -380,13 +363,14 @@ src/gamescene.cpp:
 src/texturemanager.o: src/texturemanager.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/texturemanager'
-#  Last modified 2021-07-04 17:35:53
+#  Last modified 2021-07-04 20:21:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
+ 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
 	
 
 .SECOND: game
@@ -397,13 +381,42 @@ src/texturemanager.o: src/texturemanager.cpp
 src/game.o: src/game.cpp
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `src/game'
-#  Last modified 2021-07-04 17:47:59
+#  Last modified 2021-07-04 20:21:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 21):
-	$(CC) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+#  commands to execute (from `Makefile', line 26):
+	$(CPP) -c $< -o $@ $(INCLUDE) $(CFLAGS)
+	
+
+libtea.a:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := libtea.a
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/14=14%
+#  commands to execute (from `Makefile', line 22):
+	$(CC) -c external/tea/tea.c -o tea.o $(INCLUDE) -Wall -std=c99 `sdl2-config --cflags`
+	$(AR) rcs $@ tea.o
 	
 
 # Not a target:
@@ -416,7 +429,7 @@ src/scenemanager.cpp:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=1/62=2%
+# Load=22/1024=2%, Rehash=0, Collisions=1/64=2%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -427,8 +440,7 @@ src/scenemanager.cpp:
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
- 
 
-# Finished Make data base on Thu Dec 31 21:13:43 2020
+# Finished Make data base on Sun Jul  4 20:21:56 2021
 
  

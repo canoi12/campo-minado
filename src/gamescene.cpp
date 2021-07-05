@@ -8,7 +8,9 @@ GameScene::GameScene() : _board(10, 10) {
     this->_y = 0;
     this->_scale = 2.f;
     this->_screen = nullptr;
-    this->_panelHeight = 32;
+    this->_panelHeight = 48;
+    this->_mouseX = 0;
+    this->_mouseY = 0;
 
     this->_count = this->_board.width()*this->_board.height();
     this->_rects[0] = TextureManager::Instance()->Rect("card");
@@ -26,7 +28,7 @@ void GameScene::update(float dt) {
     h = this->_board.height() * 16;
 
     this->_x = (size.x / 2.f) - ((w * this->_scale) / 2.f);
-    this->_y = this->_panelHeight + (size.y / 2.f) - ((h * this->_scale) / 2.f);
+    this->_y = this->_panelHeight + ((size.y-this->_panelHeight) / 2.f) - ((h * this->_scale) / 2.f);
 
     if (tea_key_pressed(TEA_KEY_R)) this->restart();
 
@@ -50,13 +52,17 @@ void GameScene::update(float dt) {
     int cx, cy;
     cx = floor((mx-this->_x) / (16*this->_scale));
     cy = floor((my-this->_y) / (16*this->_scale));
-    if (tea_mouse_pressed(TEA_MOUSE_LEFT)) {
-        if (this->_mask[cy][cx] == 1) this->showCell(cx, cy);
-        if (this->_board.cell(cx, cy) == '*') cout << "You lose!" << endl;
-        if (this->_count == this->_board.bombs()) this->restart();
-    } else if (tea_mouse_pressed(TEA_MOUSE_RIGHT)) {
-        if (this->_mask[cy][cx] == 1) this->_mask[cy][cx] = 2;
-        else if (this->_mask[cy][cx] == 2) this->_mask[cy][cx] = 1;
+    this->_mouseX = cx;
+    this->_mouseY = cy;
+    if (this->_board.cell(cx, cy) >= 0 && this->_mask[cy][cx] != 0) {
+        if (tea_mouse_pressed(TEA_MOUSE_LEFT)) {
+            if (this->_mask[cy][cx] == 1) this->showCell(cx, cy);
+            if (this->_board.cell(cx, cy) == '*') cout << "You lose!" << endl;
+            if (this->_count == this->_board.bombs()) this->restart();
+        } else if (tea_mouse_pressed(TEA_MOUSE_RIGHT)) {
+            if (this->_mask[cy][cx] == 1) this->_mask[cy][cx] = 2;
+            else if (this->_mask[cy][cx] == 2) this->_mask[cy][cx] = 1;
+        }
     }
 }
 
@@ -80,6 +86,9 @@ void GameScene::draw() {
         }
         yy++;
     }
+    tea_color(TEA_WHITE);
+    tea_mode(0);
+    if (this->_board.cell(this->_mouseX, this->_mouseY) >= 0) tea_rect(this->_mouseX*16, this->_mouseY*16, 16, 16);
     tea_set_target(NULL);
     float ww, hh;
     ww = this->_board.width()*16*this->_scale;
@@ -91,14 +100,35 @@ void GameScene::draw() {
     tea_mode(1);
     tea_rect(0, 0, size.x, this->_panelHeight);
     tea_color(TEA_WHITE);
-    string bombs = to_string(this->_board.bombs()) + " *";
-    tea_print(bombs.c_str(), 16, 8);
+    // string bombs = to_string(this->_board.bombs()) + " minas";
+    // tea_print(bombs.c_str(), 16, 8);
 
-    string field = "Campo: " + to_string(this->_board.width()) + "x" + to_string(this->_board.height());
-    tea_print(field.c_str(), 128, 8);
+    // string field = "Campo: " + to_string(this->_board.width()) + "x" + to_string(this->_board.height());
+    // tea_print(field.c_str(), 128, 8);
 
-    string remain = "Restantes: " + to_string(this->_count - this->_board.bombs());
-    tea_print(remain.c_str(), 256, 8);
+    // string remain = "Restantes: " + to_string(this->_count - this->_board.bombs());
+    // tea_print(remain.c_str(), 256, 8);
+
+    tea_line(0, 24, size.x, 24);
+
+    string info;
+    info += to_string(this->_board.bombs()) + " minas";
+    info += "     ";
+    info += "Campo: " + to_string(this->_board.width()) + "x" + to_string(this->_board.height());
+    info += "     ";
+    info += "Restam: " + to_string(this->_count - this->_board.bombs());
+    tea_print(info.c_str(), 8, 8);
+
+    string controls;
+    controls += "A/D: -/+ largura";
+    controls += "      ";
+    controls += "S/W: -/+ altura";
+    controls += "      ";
+    controls += "X/C: -/+ minas";
+    controls += "      ";
+    controls += "R: reiniciar";
+
+    tea_print(controls.c_str(), 8, 32);
 }
 
 void GameScene::restart() {

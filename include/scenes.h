@@ -43,6 +43,7 @@ class GameScene : public Scene {
 
     private:
     float _x, _y;
+    int _mouseX, _mouseY;
     int _panelHeight;
     float _scale;
     int _count;
@@ -54,6 +55,9 @@ class GameScene : public Scene {
     void updatePosition();
     void showCell(int x, int y);
     void resize(int width, int height);
+
+    void gameplay();
+    void pause();
 };
 
 class GameOverScene : public Scene {

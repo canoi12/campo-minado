@@ -1,0 +1,5 @@
+game
+*.a
+*.o
+src/*.o
+.vscode
