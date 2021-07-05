@@ -1,8 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/canoigomes/Documents/Projects/manifesto'
-gcc -c external/tea/tea.c -o tea.o -Iinclude -Iexternal/tea -Iexternal/tea/external -Wall -std=c99 `sdl2-config --cflags`
-ar rcs libtea.a tea.o
- 
-g++ main.cpp -o game -Iinclude -Iexternal/tea -Iexternal/tea/external -Wall -std=c++17 -L. -ltea -lgame -lSDL2 -lm -lpthread
-make: Leaving directory `/Users/canoigomes/Documents/Projects/manifesto'
- 
